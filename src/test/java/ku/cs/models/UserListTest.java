@@ -1,34 +1,53 @@
 package ku.cs.models;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserListTest {
+    User u1, u2, u3;
+    @BeforeEach
+    void init(){
+        u1 = new User("SomduiEdoi","M1212312121");
+        u2 = new User("Zinzuzan","xoxo6969");
+        u3 = new User("SufeiMing","xyz555");
+    }
+
 
     @Test
     @DisplayName("User should be found in UserList")
     public void testUserListFindUser() {
         // TODO: add 3 users to UserList
+        UserList userlist = new UserList();
+        userlist.addUser("SomduiEdoi","M1212312121");
+        userlist.addUser("Zinzuzan","xoxo6969");
+        userlist.addUser("SufeiMing","xyz555");
 
         // TODO: find one of them
+        User findUser = userlist.findUserByUsername("SomduiEdoi");
 
         // TODO: assert that UserList found User
-        // String expected = "<one of username>";
-        // String actual = user.getUsername();
-        // assertEquals(expected, actual);
+
+        String expected = "SomduiEdoi";
+        String actual = findUser.getUsername();
+        assertEquals(expected, actual);
     }
 
     @Test
     @DisplayName("User can change password")
     public void testUserCanChangePassword() {
         // TODO: add 3 users to UserList
+        UserList userlist = new UserList();
+        userlist.addUser("SomduiEdoi","M1212312121");
+        userlist.addUser("Zinzuzan","xoxo6969");
+        userlist.addUser("SufeiMing","xyz555");
 
         // TODO: change password of one user
-
+        userlist.changePassword("Sufeiming","xyz555","mamaaini");
         // TODO: assert that user can change password
-        // assertTrue(actual);
+      
     }
 
     @Test
