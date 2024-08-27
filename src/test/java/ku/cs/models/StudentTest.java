@@ -29,4 +29,16 @@ class StudentTest {
         assertEquals("A", s1.grade());
     }
 
+    @Test
+    void testIsId(){
+        boolean actual = s1.isId("661212312121");
+        assertTrue(actual);
+    }
+
+    @Test
+    void testChangeName(){
+        s1.changeName("Susan");
+        assertEquals("Susan", s1.getName());
+    }
+
 }

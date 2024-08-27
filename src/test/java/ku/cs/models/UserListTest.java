@@ -7,12 +7,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserListTest {
-    User u1, u2, u3;
+    UserList userList;
     @BeforeEach
     void init(){
-        u1 = new User("SomduiEdoi","M1212312121");
-        u2 = new User("Zinzuzan","xoxo6969");
-        u3 = new User("SufeiMing","xyz555");
+        userList = new UserList();
+        userList.addUser("SomduiEdoi","M1212312121");
+        userList.addUser("Zinzuzan","xoxo6969");
+        userList.addUser("SuFeiMing","xyz555");
     }
 
 
@@ -20,13 +21,9 @@ class UserListTest {
     @DisplayName("User should be found in UserList")
     public void testUserListFindUser() {
         // TODO: add 3 users to UserList
-        UserList userlist = new UserList();
-        userlist.addUser("SomduiEdoi","M1212312121");
-        userlist.addUser("Zinzuzan","xoxo6969");
-        userlist.addUser("SufeiMing","xyz555");
 
         // TODO: find one of them
-        User findUser = userlist.findUserByUsername("SomduiEdoi");
+        User findUser = userList.findUserByUsername("SomduiEdoi");
 
         // TODO: assert that UserList found User
 
@@ -39,15 +36,11 @@ class UserListTest {
     @DisplayName("User can change password")
     public void testUserCanChangePassword() {
         // TODO: add 3 users to UserList
-        UserList userlist = new UserList();
-        userlist.addUser("SomduiEdoi","M1212312121");
-        userlist.addUser("Zinzuzan","xoxo6969");
-        userlist.addUser("SufeiMing","xyz555");
 
         // TODO: change password of one user
-        userlist.changePassword("Sufeiming","xyz555","mamaaini");
+        boolean actual = userList.changePassword("SuFeiMing", "xyz555", "MaMaAini");
         // TODO: assert that user can change password
-      
+        assertTrue(actual);
     }
 
     @Test
@@ -56,9 +49,10 @@ class UserListTest {
         // TODO: add 3 users to UserList
 
         // TODO: call login() with correct username and password
-
+        User actual = userList.login("Zinzuzan", "xoxo6969");
         // TODO: assert that User object is found
-        // assertEquals(expected, actual);
+        User expected = userList.findUserByUsername("Zinzuzan");
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -67,9 +61,9 @@ class UserListTest {
         // TODO: add 3 users to UserList
 
         // TODO: call login() with incorrect username or incorrect password
-
+        User actual = userList.login("SomduiEdoi", "Milk37832");
         // TODO: assert that the method return null
-        // assertNull(actual);
+        assertNull(actual);
     }
 
 }
